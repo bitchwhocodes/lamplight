@@ -11,7 +11,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
  if (req.body.Body == "light it up") {
   
     var resp = new twilio.TwimlResponse();
- 	resp.message("shit this works");
+ 	resp.message("shit this works turning on");
  	res.type('text/xml');
  	res.send(resp.toString());
  	var board = new Spark({
@@ -26,9 +26,11 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
   		this.digitalWrite("D0", 1);
 	});
   //res.render('index', { title: 'got the damn text' });
- } else if(req.body.Body == "turn if off"){
-var resp = new twilio.TwimlResponse();
- 	resp.message("shit this works");
+ }
+
+ if(req.body.Body == "turn if off"){
+	var resp = new twilio.TwimlResponse();
+ 	resp.message("shit this works turning off");
  	res.type('text/xml');
  	res.send(resp.toString());
  	var board = new Spark({
@@ -43,9 +45,6 @@ var resp = new twilio.TwimlResponse();
   		this.digitalWrite("D0", 0);
 	});
 
- }else {
-   console.log("Wrong number!");
-  // sendMessage(res, "Invalid number!");
  }
  
 });
