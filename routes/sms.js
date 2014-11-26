@@ -4,29 +4,7 @@ var twilio = require('twilio');
 var Spark = require("spark-io");
 
 
-/*post*/
 
-router.get('/', function(req, res) {
-	var board = new Spark({
-  		token: process.env.SPARK_TOKEN,
-  		deviceId: process.env.SPARK_ID,
-  		port:700
-  		
-	});
-
-	console.log("FUCK");
-	//console.log(board);
-	console.log("shit"+token);
-	//console.log(deviceId);
-
-	board.on("ready", function() {
-		console.log("ready");
-		this.pinMode("D0", this.MODES.OUTPUT);
-		this.digitalWrite("D0",1);
-	});
-  res.render('index', { title: 'SMS' });
-  console.log('here we go');
-});
 
 
 router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsites.net', protocol:'http' }), function(req, res){
@@ -35,7 +13,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
     var resp = new twilio.TwimlResponse();
  	
  	res.type('text/xml');
- 	
+ 	console.log(process.env.SPARK_TOKEN);
  	
  	//resp.message("shit this works turning on"+board);
 	
