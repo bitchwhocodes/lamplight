@@ -19,10 +19,11 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
   		deviceId: process.env.SPARK_ID
 	});
  	resp.message("shit this works turning on"+board);
-	res.send(resp.toString());
+	
 
 
 	board.on("ready", function() {
+		res.send(resp.toString());
 		this.pinMode("D0", this.MODES.OUTPUT);
 		this.digitalWrite("D0", 1);
 	});
