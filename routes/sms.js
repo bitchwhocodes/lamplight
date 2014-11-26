@@ -11,7 +11,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
  if (req.body.Body == "light it up") {
   
     var resp = new twilio.TwimlResponse();
- 	resp.message("shit this works turning on");
+ 	resp.message("shit this works turning on"+process.env.SPARK_TOKEN);
  	res.type('text/xml');
  	res.send(resp.toString());
  	var board = new Spark({
@@ -28,7 +28,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
   //res.render('index', { title: 'got the damn text' });
  }
 
- if(req.body.Body == "turn if off"){
+ if(req.body.Body == "turn it off"){
 	var resp = new twilio.TwimlResponse();
  	resp.message("shit this works turning off");
  	res.type('text/xml');
