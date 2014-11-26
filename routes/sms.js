@@ -7,7 +7,7 @@ var Spark = require("spark-io");
 
 
 /*post*/
-router.post('/', twilio.webhook(process.env.twilio, { host:'lamplight.azurewebsites.net', protocol:'http' }), function(req, res){
+router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsites.net', protocol:'http' }), function(req, res){
  if (req.body.Body == "light it up") {
    console.log("verified number!");
     var resp = new twilio.TwimlResponse();
@@ -25,8 +25,8 @@ router.post('/', twilio.webhook(process.env.twilio, { host:'lamplight.azurewebsi
 
 function blinkSpark(){
 	var board = new Spark({
-  		token: process.env.sparktoken,
-  		deviceId: process.env.sparkid
+  		token: process.env.SPARK_TOKEN,
+  		deviceId: process.env.SPARK_ID
 	});
 
 
