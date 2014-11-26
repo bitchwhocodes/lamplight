@@ -11,19 +11,20 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
  if (req.body.Body == "light it up") {
   
     var resp = new twilio.TwimlResponse();
- 	resp.message("shit this works turning on"+process.env.SPARK_TOKEN);
+ 	
  	res.type('text/xml');
- 	res.send(resp.toString());
+ 	
  	var board = new Spark({
   		token: process.env.SPARK_TOKEN,
   		deviceId: process.env.SPARK_ID
 	});
+ 	resp.message("shit this works turning on"+board);
+	res.send(resp.toString());
 
 
 	board.on("ready", function() {
 		this.pinMode("D0", this.MODES.OUTPUT);
-		
-  		this.digitalWrite("D0", 1);
+		this.digitalWrite("D0", 1);
 	});
   //res.render('index', { title: 'got the damn text' });
  }
