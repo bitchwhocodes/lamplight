@@ -20,7 +20,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
 	var board = new Spark({
   		token: process.env.SPARK_TOKEN,
   		deviceId: process.env.SPARK_ID,
-  		
+  		port:process.env.port;
 	});
 
 	console.log(board);
