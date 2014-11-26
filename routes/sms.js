@@ -8,7 +8,11 @@ var twilio = require('twilio');
 router.post('/', twilio.webhook('44b4af81151ee477a0926f1c3b54ac3f', { host:'lamplight.azurewebsites.net', protocol:'http' }), function(req, res){
  if (req.body.Body == "light it up") {
    console.log("verified number!");
-   res.render('index', { title: 'got the damn text' });
+    var resp = new twilio.TwimlResponse();
+ 	resp.message(message);
+ 	res.type('text/xml');
+ 	res.send(resp.toString());
+  //res.render('index', { title: 'got the damn text' });
  } else {
    console.log("Wrong number!");
   // sendMessage(res, "Invalid number!");
