@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 		var board = new Spark({
   		token: process.env.SPARK_TOKEN,
   		deviceId: process.env.SPARK_ID,
-  		port:process.env.PORT
+  		port:3000
 	});
 
 board.on("ready", function() {
