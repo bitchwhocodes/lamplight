@@ -20,7 +20,10 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
  	
  	res.type('text/xml');
  	
- 	
+ 	var board = new Spark({
+  		token: process.env.SPARK_TOKEN,
+  		deviceId: process.env.SPARK_ID
+	});
  	resp.message("shit this works turning on"+board);
 	res.send(resp.toString());
 	board.digitalWrite("D0",1);
