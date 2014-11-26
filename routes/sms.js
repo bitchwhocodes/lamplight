@@ -14,17 +14,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
  	resp.message("shit this works");
  	res.type('text/xml');
  	res.send(resp.toString());
- 	blinkSpark();
-  //res.render('index', { title: 'got the damn text' });
- } else {
-   console.log("Wrong number!");
-  // sendMessage(res, "Invalid number!");
- }
- 
-});
-
-function blinkSpark(){
-	var board = new Spark({
+ 	var board = new Spark({
   		token: process.env.SPARK_TOKEN,
   		deviceId: process.env.SPARK_ID
 	});
@@ -35,8 +25,15 @@ function blinkSpark(){
 		var byte = 0;
   		this.digitalWrite("D0", (byte ^= 1));
 	});
+  //res.render('index', { title: 'got the damn text' });
+ } else {
+   console.log("Wrong number!");
+  // sendMessage(res, "Invalid number!");
+ }
+ 
+});
 
-}
+
 module.exports = router;
 
 /*
