@@ -9,7 +9,7 @@ router.post('/', twilio.webhook('44b4af81151ee477a0926f1c3b54ac3f', { host:'lamp
  if (req.body.Body == "light it up") {
    console.log("verified number!");
     var resp = new twilio.TwimlResponse();
- 	resp.message(message);
+ 	resp.message("shit this works");
  	res.type('text/xml');
  	res.send(resp.toString());
   //res.render('index', { title: 'got the damn text' });
