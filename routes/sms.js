@@ -14,9 +14,9 @@ router.get('/', function(req, res) {
   		
 	});
 
-	console.log(board);
-	console.log(token);
-	console.log(deviceId);
+	//console.log(board);
+	console.log("shit"+token);
+	//console.log(deviceId);
 
 	board.on("ready", function() {
 		console.log("ready");
