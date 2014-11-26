@@ -9,20 +9,20 @@ var Spark = require("spark-io");
 router.get('/', function(req, res) {
 	var board = new Spark({
   		token: process.env.SPARK_TOKEN,
-  		deviceId: process.env.SPARK_ID
+  		deviceId: process.env.SPARK_ID,
+  		port:3000
   		
 	});
 
 	console.log(board);
 
-board.on("ready", function() {
-	console.log("ready");
+	board.on("ready", function() {
+		console.log("ready");
 		this.pinMode("D0", this.MODES.OUTPUT);
 		this.digitalWrite("D0",1);
-
-		
 	});
-  //res.render('index', { title: 'SMS' });
+  res.render('index', { title: 'SMS' });
+  console.log('here we go');
 });
 
 
