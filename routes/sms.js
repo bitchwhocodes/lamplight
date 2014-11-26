@@ -26,7 +26,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
   		this.digitalWrite("D0", 1);
 	});
   //res.render('index', { title: 'got the damn text' });
- } if(req.body.Body == "turn if off "){
+ } if(req.body.Body == "turn if off"){
 var resp = new twilio.TwimlResponse();
  	resp.message("shit this works");
  	res.type('text/xml');
