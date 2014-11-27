@@ -11,7 +11,7 @@ Spark.login({ username: process.env.USER_NAME, password: process.env.PASS_WORD }
   console.log('API call login completed on callback:', body);
 });
 
-Spark.callFunction(process.env.SPARK_ID,'led','0','HIGH',function(err,data){
+Spark.callFunction(process.env.SPARK_ID,'setLed','ON',function(err,data){
 	console.log(err);
 	console.log(data);
 
@@ -38,7 +38,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
  	console.log(process.env.SPARK_TOKEN);
  	
  	
-	
+	/*
 	var board = new Spark({
   		token: process.env.SPARK_TOKEN,
   		deviceId: process.env.SPARK_ID,
@@ -54,6 +54,8 @@ board.on("ready", function() {
 
 		
 	});
+
+*/
 res.send(resp.toString());
 	
   //res.render('index', { title: 'got the damn text' });
