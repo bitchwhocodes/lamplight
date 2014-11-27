@@ -61,7 +61,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
   console.log('API call login completed on callback:', body);
 });
 
-Spark.callFunction(process.env.SPARK_ID,'setLed','ON',function(err,data){
+Spark.callFunction(process.env.SPARK_ID,'setLed','OFF',function(err,data){
 	console.log(err);
 	console.log(data);
 	
