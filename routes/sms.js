@@ -1,17 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var twilio = require('twilio');
-var Spark = require("spark-io");
+var Spark = require("spark");
+
 
 
 
 router.get('/', function(req, res) {
-		var board = new Spark({
-  		token: process.env.SPARK_TOKEN,
-  		deviceId: process.env.SPARK_ID,
-  		port:3000
-	});
+Spark.login({ username: process.env.USER_NAME, password: process.env.PASS_WORD }, function(err, body) {
+  console.log('API call login completed on callback:', body);
+});
 
+Spark.callFunction(process.env.SPARK_ID,'led','0','HIGH',function(err,data){
+	console.log(err);
+	console.log(data);
+
+})
+	
+/*
 board.on("ready", function() {
 	console.log("ready");
 		this.pinMode("D0", this.MODES.OUTPUT);
@@ -19,6 +25,7 @@ board.on("ready", function() {
 
 		
 	});
+*/
   res.render('index', { title: 'Lamp' });
 });
 
