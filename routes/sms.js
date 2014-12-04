@@ -52,16 +52,16 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME
   //res.render('index', { title: 'got the damn text' });
  }
 
- if(req.body.Body == "hide"){
+ if(req.body.Body =="hide"){
 	var resp = new twilio.TwimlResponse();
- 	resp.message("shit this works turning off");
+ 	resp.message("RUN and HIDE");
  	res.type('text/xml');
  	
  	Spark.login({ username: process.env.USER_NAME, password: process.env.PASS_WORD }, function(err, body) {
   console.log('API call login completed on callback:', body);
 });
 
-Spark.callFunction(process.env.SPARK_ID,'setLed','OFF',function(err,data){
+Spark.callFunction(process.env.SPARK_ID,'setPosition','OFF',function(err,data){
 	console.log(err);
 	console.log(data);
 	
