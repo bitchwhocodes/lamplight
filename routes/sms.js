@@ -29,7 +29,7 @@ board.on("ready", function() {
   res.render('index', { title: 'Lamp' });
 });
 
-router.post('/', twilio.webhook(process.env.TWILIO, { host:proces.env.HOST_NAME, protocol:'http' }), function(req, res){
+router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME, protocol:'http' }), function(req, res){
  if (req.body.Body == "light it up") {
   
     var resp = new twilio.TwimlResponse();
