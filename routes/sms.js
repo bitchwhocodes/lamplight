@@ -19,7 +19,8 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME
 	Spark.callFunction(process.env.SPARK_ID,'setPosition','ON',function(err,data){
 		console.log(err);
 		console.log(data);
-        console.log("testing");
+		console.log("testing");
+		console.log("one more");
 		res.send(resp.toString());
 
 	});
