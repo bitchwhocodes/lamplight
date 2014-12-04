@@ -33,7 +33,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME
  if (req.body.Body == "show") {
   
     var resp = new twilio.TwimlResponse();
- resp.message("shit this works turning on");
+ resp.message("OKAY MAKE THIS HAPPEN");
  	res.type('text/xml');
  	console.log(process.env.SPARK_TOKEN);
  	
