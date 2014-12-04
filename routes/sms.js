@@ -4,38 +4,13 @@ var twilio = require('twilio');
 var Spark = require("spark");
 
 
-
-
-router.get('/', function(req, res) {
-Spark.login({ username: process.env.USER_NAME, password: process.env.PASS_WORD }, function(err, body) {
-  console.log('API call login completed on callback:', body);
-});
-
-Spark.callFunction(process.env.SPARK_ID,'setLed','ON',function(err,data){
-	console.log(err);
-	console.log(data);
-
-})
-	
-/*
-board.on("ready", function() {
-	console.log("ready");
-		this.pinMode("D0", this.MODES.OUTPUT);
-		this.digitalWrite("D0",1);
-
-		
-	});
-*/
-  res.render('index', { title: 'Lamp' });
-});
-
 router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME, protocol:'http' }), function(req, res){
  if (req.body.Body == "show") {
   
     var resp = new twilio.TwimlResponse();
- resp.message("OKAY MAKE THIS HAPPEN");
+  resp.message("YES SHOW IT");
  	res.type('text/xml');
- 	console.log(process.env.SPARK_TOKEN);
+ 
  	
  	Spark.login({ username: process.env.USER_NAME, password: process.env.PASS_WORD }, function(err, body) {
   		console.log('API call login completed on callback:', body);
@@ -44,12 +19,11 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME
 	Spark.callFunction(process.env.SPARK_ID,'setPosition','ON',function(err,data){
 		console.log(err);
 		console.log(data);
+        console.log("testing");
 		res.send(resp.toString());
 
 	});
 
-	
-  //res.render('index', { title: 'got the damn text' });
  }
 
  if(req.body.Body =="hide"){
@@ -61,13 +35,11 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME
   console.log('API call login completed on callback:', body);
 });
 
-Spark.callFunction(process.env.SPARK_ID,'setPosition','OFF',function(err,data){
-	console.log(err);
-	console.log(data);
-	
-
-	res.send(resp.toString());
-})
+    Spark.callFunction(process.env.SPARK_ID,'setPosition','OFF',function(err,data){
+	    console.log(err);
+	    console.log(data);
+	    res.send(resp.toString());
+    })
 
  }
  
