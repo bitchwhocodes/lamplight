@@ -29,7 +29,7 @@ board.on("ready", function() {
   res.render('index', { title: 'Lamp' });
 });
 
-router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsites.net', protocol:'http' }), function(req, res){
+router.post('/', twilio.webhook(process.env.TWILIO, { host:proces.env.HOST_NAME, protocol:'http' }), function(req, res){
  if (req.body.Body == "light it up") {
   
     var resp = new twilio.TwimlResponse();
@@ -41,7 +41,7 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:'lamplight.azurewebsi
   		console.log('API call login completed on callback:', body);
 	});
 
-	Spark.callFunction(process.env.SPARK_ID,'setLed','ON',function(err,data){
+	Spark.callFunction(process.env.SPARK_ID,'setPosition','ON',function(err,data){
 		console.log(err);
 		console.log(data);
 		res.send(resp.toString());
