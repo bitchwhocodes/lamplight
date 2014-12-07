@@ -6,6 +6,7 @@ var Spark = require("spark");
 
 router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME, protocol:'http' }), function(req, res){
  var callCommand = '';
+ console.log(req.body.Body.toLowerCase());
  switch (req.body.Body.toLowerCase())
  {
  	case "forward":
@@ -29,6 +30,8 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME
  		break;
  }
 
+
+console.log(callCommand);
 
 
 
