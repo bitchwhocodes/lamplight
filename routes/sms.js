@@ -23,7 +23,13 @@ router.post('/', twilio.webhook(process.env.TWILIO, { host:process.env.HOST_NAME
  	case "stop":
  		callCommand = "stop"; 
  		break;
+
+ 	default:
+ 		callCommand = "stop";
+ 		break;
  }
+
+
 
 
 if(callCommand.length)
